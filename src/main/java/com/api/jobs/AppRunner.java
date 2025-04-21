@@ -10,12 +10,18 @@ public class AppRunner {
         String json = apiClient.getJobListingsJson("https://remotive.io/api/remote-jobs");
         // Process the JSON data
         DataProcessor dataProcessor = new DataProcessor();
-        List<JobListing> jobs = dataProcessor.extractJobs(json);
+        // Filters for the job listings
+        List<JobListing> allJobs = dataProcessor.extractJobs(json);
+        List<JobListing> filteredByTitle = JobFilter.filterByTitle(allJobs, "developer");
+        List<JobListing> filteredByCompanyName = JobFilter.filterByCompanyName(allJobs, "Google");
+        List<JobListing> filteredByCategory = JobFilter.filterByCategory(allJobs, "software");
+        List<JobListing> filteredByDescription = JobFilter.filterByDescription(allJobs, "remote");
         // Print the job listings
-        System.out.println("Total Jobs Found: " + jobs.size() + "\n");
-        for (JobListing job : jobs) {
+        System.out.println("Total Jobs Found: " + allJobs.size() + "\n");
+        System.out.println("Total Jobs Found Matching Criteria: " + filteredByCategory.size() + "\n");
+        for (JobListing job : filteredByCategory) {
             System.out.println(job);
-            System.out.println("--------------------------------------------------------------------------");
+            System.out.println("--------------------------------------------------------------------------" + "\n");
         }
     }
 }
