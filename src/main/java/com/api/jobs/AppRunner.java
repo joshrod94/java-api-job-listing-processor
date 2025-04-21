@@ -18,10 +18,13 @@ public class AppRunner {
         List<JobListing> filteredByDescription = JobFilter.filterByDescription(allJobs, "remote");
         // Print the job listings
         System.out.println("Total Jobs Found: " + allJobs.size() + "\n");
-        System.out.println("Total Jobs Found Matching Criteria: " + filteredByCategory.size() + "\n");
-        for (JobListing job : filteredByCategory) {
+        System.out.println("Total Jobs Found Matching Criteria: " + filteredByTitle.size() + "\n");
+        for (JobListing job : filteredByTitle) {
             System.out.println(job);
             System.out.println("--------------------------------------------------------------------------" + "\n");
         }
+        // Send the job listings to another API or service
+        ApiForwarder apiForwarder = new ApiForwarder();
+        apiForwarder.sendJobs(filteredByTitle);
     }
 }
