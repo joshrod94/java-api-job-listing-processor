@@ -48,7 +48,7 @@ src
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/<your-username>/java-api-job-listing-processor.git
+   git clone https://github.com/joshrod94/java-api-job-listing-processor.git
    ```
 2. Open the project in IntelliJ IDEA
 3. Let Maven import dependencies from `pom.xml`
